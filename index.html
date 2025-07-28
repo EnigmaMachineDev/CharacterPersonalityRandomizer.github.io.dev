@@ -29,8 +29,8 @@
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             text-align: center;
-            max-width: 500px;
-            width: 100%;
+            width: 500px;
+            position: relative;
         }
         h1 {
             color: #66bb6a; /* Green */
@@ -64,6 +64,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
+            position: relative;
         }
         #characterDisplay p {
             margin: 8px 0;
@@ -72,6 +73,24 @@
         }
         #characterDisplay p strong {
             color: #66bb6a;
+            margin-right: 5px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            align-items: center;
+        }
+        .section-divider {
+            border-top: 1px solid #4a4a4a;
+            margin: 15px 0;
+            width: 100%;
         }
         #characterDisplay a {
             color: #66bb6a;
@@ -103,6 +122,30 @@
             background-color: #5cb85c;
             text-decoration: none;
         }
+        .reroll-button {
+            background-color: #4a4a4a;
+            color: #e0e0e0;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            position: absolute;
+            right: 20px;
+        }
+        .reroll-button:hover {
+            background-color: #5a5a5a;
+        }
+        #rerollIdentityBtn {
+            top: 20px;
+        }
+        #rerollPersonalityBtn {
+            top: 170px;
+        }
+        .section-header-text {
+            display: block;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -125,28 +168,85 @@
     </div>
 
     <script>
-        document.getElementById('generateButton').addEventListener('click', async () => {
-            const displayDiv = document.getElementById('characterDisplay');
-            displayDiv.innerHTML = '<p>Generating character...</p>'; // Show loading message
+        const generateButton = document.getElementById('generateButton');
+        const characterDisplay = document.getElementById('characterDisplay');
 
+        let character = {};
+
+        const fetchCharacter = async () => {
+            characterDisplay.innerHTML = '<p>Generating character...</p>';
             try {
                 const response = await fetch('https://characterroleplayingdatarandomizer.fly.dev/character');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const character = await response.json();
-
-                displayDiv.innerHTML = `
-                    <p><strong>Name:</strong> ${character.firstName} ${character.lastName}</p>
-                    <p><strong>Sex:</strong> ${character.sex}</p>
-                    <p><strong>Alignment:</strong> ${character.alignment}</p>
-                    <p><strong>Personality Type:</strong> ${character.personalityType.name} <a href="${character.personalityType.link}" target="_blank">(link)</a></p>
-                `;
+                character = await response.json();
+                renderCharacter();
             } catch (error) {
+                characterDisplay.innerHTML = '<p style="color: red;">Failed to generate character. Please try again later.</p>';
                 console.error('Error fetching character:', error);
-                displayDiv.innerHTML = '<p style="color: red;">Failed to generate character. Please try again later.</p>';
             }
-        });
+        };
+
+        const rerollIdentity = async () => {
+            try {
+                const response = await fetch('https://characterroleplayingdatarandomizer.fly.dev/name');
+                const nameData = await response.json();
+                character.firstName = nameData.firstName;
+                character.lastName = nameData.lastName;
+                character.sex = nameData.sex;
+                renderCharacter();
+            } catch (error) {
+                console.error('Error rerolling identity:', error);
+                characterDisplay.innerHTML = '<p style="color: red;">Failed to reroll identity. Please try again later.</p>';
+            }
+        };
+
+        const rerollPersonality = async () => {
+            try {
+                const response = await fetch('https://characterroleplayingdatarandomizer.fly.dev/personality');
+                const personalityData = await response.json();
+                character.alignment = personalityData.alignment;
+                character.personalityType = personalityData.personalityType;
+                renderCharacter();
+            } catch (error) {
+                console.error('Error rerolling personality:', error);
+                characterDisplay.innerHTML = '<p style="color: red;">Failed to reroll personality. Please try again later.</p>';
+            }
+        };
+
+        const renderCharacter = () => {
+            if (Object.keys(character).length === 0) {
+                characterDisplay.innerHTML = '<p>Click the button to generate a character!</p>';
+                return;
+            }
+
+            characterDisplay.innerHTML = `
+                <button class="reroll-button" id="rerollIdentityBtn">↻</button>
+                <div id="identitySection">
+                    <div class="section-header">
+                        <strong class="section-header-text">Identity</strong>
+                    </div>
+                    <div class="details-grid">
+                        <p><strong>Name:</strong></p><p>${character.firstName} ${character.lastName}</p>
+                        <p><strong>Sex:</strong></p><p>${character.sex}</p>
+                    </div>
+                </div>
+                <div class="section-divider"></div>
+                <button class="reroll-button" id="rerollPersonalityBtn">↻</button>
+                <div id="personalitySection">
+                    <div class="section-header">
+                        <strong class="section-header-text">Personality</strong>
+                    </div>
+                    <div class="details-grid">
+                        <p><strong>Alignment:</strong></p><p>${character.alignment}</p>
+                        <p><strong>Personality Type:</strong></p><p>${character.personalityType.name} <a href="${character.personalityType.link}" target="_blank">(link)</a></p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('rerollIdentityBtn').addEventListener('click', rerollIdentity);
+            document.getElementById('rerollPersonalityBtn').addEventListener('click', rerollPersonality);
+        };
+
+        generateButton.addEventListener('click', fetchCharacter);
     </script>
 </body>
 </html>

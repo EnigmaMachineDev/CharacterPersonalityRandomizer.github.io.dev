@@ -1,0 +1,80 @@
+
+{
+  "personalityType": [
+    {
+      "name": "INTJ - The Architect",
+      "link": "https://www.16personalities.com/intj-personality"
+    },
+    {
+      "name": "INTP - The Logician",
+      "link": "https://www.16personalities.com/intp-personality"
+    },
+    {
+      "name": "ENTJ - The Commander",
+      "link": "https://www.16personalities.com/entj-personality"
+    },
+    {
+      "name": "ENTP - The Debater",
+      "link": "https://www.16personalities.com/entp-personality"
+    },
+    {
+      "name": "INFJ - The Advocate",
+      "link": "https://www.16personalities.com/infj-personality"
+    },
+    {
+      "name": "INFP - The Mediator",
+      "link": "https://www.16personalities.com/infp-personality"
+    },
+    {
+      "name": "ENFJ - The Protagonist",
+      "link": "https://www.16personalities.com/enfj-personality"
+    },
+    {
+      "name": "ENFP - The Campaigner",
+      "link": "https://www.16personalities.com/enfp-personality"
+    },
+    {
+      "name": "ISTJ - The Logistician",
+      "link": "https://www.16personalities.com/istj-personality"
+    },
+    {
+      "name": "ISFJ - The Defender",
+      "link": "https://www.16personalities.com/isfj-personality"
+    },
+    {
+      "name": "ESTJ - The Executive",
+      "link": "https://www.16personalities.com/estj-personality"
+    },
+    {
+      "name": "ESFJ - The Consul",
+      "link": "https://www.16personalities.com/esfj-personality"
+    },
+    {
+      "name": "ISTP - The Virtuoso",
+      "link": "https://www.16personalities.com/istp-personality"
+    },
+    {
+      "name": "ISFP - The Adventurer",
+      "link": "https://www.16personalities.com/isfp-personality"
+    },
+    {
+      "name": "ESTP - The Entrepreneur",
+      "link": "https://www.16personalities.com/estp-personality"
+    },
+    {
+      "name": "ESFP - The Entertainer",
+      "link": "https://www.16personalities.com/esfp-personality"
+    }
+  ],
+  "alignment": [
+    "Lawful Good",
+    "Neutral Good",
+    "Chaotic Good",
+    "Lawful Neutral",
+    "True Neutral",
+    "Chaotic Neutral",
+    "Lawful Evil",
+    "Neutral Evil",
+    "Chaotic Evil"
+  ]
+}

@@ -1,0 +1,8 @@
+Currently, in index.html when generate random character button is clicked, we call an api called /character. When the identity reroll button is clicked we call an api called /name. When the personality reroll button isclicked we call an api called /personality.
+
+Since these apis do not actually save information, and just return information based on random rolls in a json file, I want to move away from using apis for this functionality and just have it done in javascript.
+
+I have pulled the main.go file which is currently where the apis we call are, so you can see each api and their logic. I have also pulled in both of the json files that main.go accessed to generate a random character, name, personality with.
+
+Based on the functionality in main.go for each of the apis we call in index.html, change index.html to do the same functionality as main.go for the generate random character button /character, and for each reroll button for their respective apis. 
+The application should not call any api after your changes are completed, but the functionality of the app should work exactly as it did before to the user of the application.
