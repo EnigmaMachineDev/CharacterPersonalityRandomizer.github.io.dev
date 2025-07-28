@@ -172,44 +172,24 @@
         const characterDisplay = document.getElementById('characterDisplay');
 
         let character = {};
+        let namesData = null;
+        let personalityData = null;
 
-        const fetchCharacter = async () => {
-            characterDisplay.innerHTML = '<p>Generating character...</p>';
-            try {
-                const response = await fetch('https://characterroleplayingdatarandomizer.fly.dev/character');
-                character = await response.json();
-                renderCharacter();
-            } catch (error) {
-                characterDisplay.innerHTML = '<p style="color: red;">Failed to generate character. Please try again later.</p>';
-                console.error('Error fetching character:', error);
-            }
+        const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+        const generateIdentity = () => {
+            const sex = getRandomElement(['Male', 'Female']);
+            const firstName = sex === 'Male'
+                ? getRandomElement(namesData.firstName.male)
+                : getRandomElement(namesData.firstName.female);
+            const lastName = getRandomElement(namesData.lastNames);
+            return { firstName, lastName, sex };
         };
 
-        const rerollIdentity = async () => {
-            try {
-                const response = await fetch('https://characterroleplayingdatarandomizer.fly.dev/name');
-                const nameData = await response.json();
-                character.firstName = nameData.firstName;
-                character.lastName = nameData.lastName;
-                character.sex = nameData.sex;
-                renderCharacter();
-            } catch (error) {
-                console.error('Error rerolling identity:', error);
-                characterDisplay.innerHTML = '<p style="color: red;">Failed to reroll identity. Please try again later.</p>';
-            }
-        };
-
-        const rerollPersonality = async () => {
-            try {
-                const response = await fetch('https://characterroleplayingdatarandomizer.fly.dev/personality');
-                const personalityData = await response.json();
-                character.alignment = personalityData.alignment;
-                character.personalityType = personalityData.personalityType;
-                renderCharacter();
-            } catch (error) {
-                console.error('Error rerolling personality:', error);
-                characterDisplay.innerHTML = '<p style="color: red;">Failed to reroll personality. Please try again later.</p>';
-            }
+        const generatePersonality = () => {
+            const alignment = getRandomElement(personalityData.alignment);
+            const personalityType = getRandomElement(personalityData.personalityType);
+            return { alignment, personalityType };
         };
 
         const renderCharacter = () => {
@@ -242,11 +222,56 @@
                 </div>
             `;
 
-            document.getElementById('rerollIdentityBtn').addEventListener('click', rerollIdentity);
-            document.getElementById('rerollPersonalityBtn').addEventListener('click', rerollPersonality);
+            document.getElementById('rerollIdentityBtn').addEventListener('click', handleRerollIdentity);
+            document.getElementById('rerollPersonalityBtn').addEventListener('click', handleRerollPersonality);
         };
 
-        generateButton.addEventListener('click', fetchCharacter);
+        const handleGenerateCharacter = () => {
+            if (!namesData || !personalityData) return;
+            characterDisplay.innerHTML = '<p>Generating character...</p>';
+            const identity = generateIdentity();
+            const personality = generatePersonality();
+            character = { ...identity, ...personality };
+            renderCharacter();
+        };
+
+        const handleRerollIdentity = () => {
+            if (!namesData) return;
+            const identity = generateIdentity();
+            character.firstName = identity.firstName;
+            character.lastName = identity.lastName;
+            character.sex = identity.sex;
+            renderCharacter();
+        };
+
+        const handleRerollPersonality = () => {
+            if (!personalityData) return;
+            const personality = generatePersonality();
+            character.alignment = personality.alignment;
+            character.personalityType = personality.personalityType;
+            renderCharacter();
+        };
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            generateButton.disabled = true;
+            characterDisplay.innerHTML = '<p>Loading data...</p>';
+            try {
+                const [namesResponse, personalityResponse] = await Promise.all([
+                    fetch('names.json'),
+                    fetch('randomizer.json')
+                ]);
+                namesData = await namesResponse.json();
+                personalityData = await personalityResponse.json();
+
+                generateButton.disabled = false;
+                characterDisplay.innerHTML = '<p>Click the button to generate a character!</p>';
+            } catch (error) {
+                characterDisplay.innerHTML = '<p style="color: red;">Failed to load character data. Please refresh the page.</p>';
+                console.error('Error loading data:', error);
+            }
+        });
+
+        generateButton.addEventListener('click', handleGenerateCharacter);
     </script>
 </body>
 </html>
