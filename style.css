@@ -140,13 +140,8 @@
             width: 100%;
         }
         .banner {
-            width: 500px;
-            padding: 20px 0;
-            background-color: #66bb6a;
-            color: #1a1a1a;
-            text-align: center;
-            border-radius: 8px;
-            font-weight: bold;
+            width: 728px;
+            height: 90px;
         }
         .top-banner {
             margin-bottom: 60px;
