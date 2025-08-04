@@ -24,6 +24,8 @@
             text-align: center;
             width: 500px;
             position: relative;
+            margin-top: 60px;
+            margin-bottom: 60px;
         }
         h1 {
             color: #66bb6a; /* Green */
@@ -144,10 +146,8 @@
             height: 90px;
         }
         .top-banner {
-            margin-bottom: 60px;
         }
         .bottom-banner {
-            margin-top: 60px;
         }
         .side-banner-left {
             margin-right: 60px;
