@@ -1,0 +1,163 @@
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: #2c2c2c;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 500px;
+            position: relative;
+        }
+        h1 {
+            color: #66bb6a; /* Green */
+            margin-bottom: 30px;
+        }
+        button {
+            background-color: #66bb6a;
+            color: #1a1a1a;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-bottom: 30px;
+        }
+        button:hover {
+            background-color: #5cb85c;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        #characterDisplay {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+        #characterDisplay p {
+            margin: 8px 0;
+            font-size: 1.1em;
+            color: #fff;
+        }
+        #characterDisplay p strong {
+            color: #66bb6a;
+            margin-right: 5px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            align-items: center;
+        }
+        .section-divider {
+            border-top: 1px solid #4a4a4a;
+            margin: 15px 0;
+            width: 100%;
+        }
+        #characterDisplay a {
+            color: #66bb6a;
+            text-decoration: none;
+        }
+        #characterDisplay a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #e0e0e0;
+            text-align: center;
+        }
+        .coffee-link {
+            margin-top: 10px;
+        }
+        .coffee-link a {
+            display: inline-block;
+            background-color: #66bb6a;
+            color: #1a1a1a;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .coffee-link a:hover {
+            background-color: #5cb85c;
+            text-decoration: none;
+        }
+        .reroll-button {
+            background-color: #4a4a4a;
+            color: #e0e0e0;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            position: absolute;
+            right: 20px;
+        }
+        .reroll-button:hover {
+            background-color: #5a5a5a;
+        }
+        #rerollIdentityBtn {
+            top: 20px;
+        }
+        #rerollPersonalityBtn {
+            top: 170px;
+        }
+        .section-header-text {
+            display: block;
+            width: 100%;
+        }
+        .banner {
+            width: 500px;
+            padding: 20px 0;
+            background-color: #66bb6a;
+            color: #1a1a1a;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .top-banner {
+            margin-bottom: 60px;
+        }
+        .bottom-banner {
+            margin-top: 60px;
+        }
+        .side-banner-left {
+            margin-right: 60px;
+        }
+        .side-banner-right {
+            margin-left: 60px;
+        }
+    
