@@ -142,3 +142,23 @@
             width: 100%;
         }
     
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+
+    #rerollPersonalityBtn {
+        top: 200px;
+    }
+}
+    
