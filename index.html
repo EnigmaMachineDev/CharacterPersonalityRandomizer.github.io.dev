@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,310 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Character Generator</title>
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn46yPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .container {
+            background-color: #2c2c2c;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #66bb6a;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        button {
+            background-color: #66bb6a;
+            color: #1a1a1a;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-bottom: 30px;
+        }
+
+        button:hover {
+            background-color: #5cb85c;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #characterDisplay {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        #characterDisplay p {
+            margin: 8px 0;
+            font-size: 1.1em;
+            color: #fff;
+        }
+
+        #characterDisplay p strong {
+            color: #66bb6a;
+            margin-right: 5px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .section-header-text {
+            display: block;
+            width: 100%;
+            color: #66bb6a;
+            font-size: 1.2em;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .section-divider {
+            border-top: 1px solid #4a4a4a;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        #characterDisplay a {
+            color: #66bb6a;
+            text-decoration: none;
+        }
+
+        #characterDisplay a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #e0e0e0;
+            text-align: center;
+        }
+
+        .coffee-link {
+            margin-top: 10px;
+        }
+
+        .coffee-link a {
+            display: inline-block;
+            background-color: #66bb6a;
+            color: #1a1a1a;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .coffee-link a:hover {
+            background-color: #5cb85c;
+            text-decoration: none;
+        }
+
+        .reroll-button {
+            background-color: #4a4a4a;
+            color: #e0e0e0;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            position: absolute;
+            right: 20px;
+            margin: 0;
+        }
+
+        .reroll-button:hover {
+            background-color: #5a5a5a;
+        }
+
+        #rerollIdentityBtn {
+            top: 20px;
+        }
+
+        #rerollPersonalityBtn {
+            top: 170px;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                align-items: flex-start;
+                padding-top: 20px;
+            }
+
+            .main-wrapper {
+                max-width: 100%;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                padding: 20px 15px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                min-width: 0;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 16px;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            #characterDisplay {
+                padding: 15px;
+                min-height: 120px;
+            }
+
+            #characterDisplay p {
+                font-size: 1em;
+                margin: 6px 0;
+            }
+
+            .details-grid {
+                gap: 8px;
+            }
+
+            .section-header-text {
+                font-size: 1.1em;
+            }
+
+            .reroll-button {
+                position: static;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding: 8px 12px;
+                font-size: 14px;
+                width: auto;
+                align-self: flex-end;
+            }
+
+            .section-container {
+                position: relative;
+                width: 100%;
+            }
+
+            .section-with-reroll {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            #rerollIdentityBtn, #rerollPersonalityBtn {
+                position: static;
+                top: auto;
+                right: auto;
+                margin-left: auto;
+            }
+
+            .footer {
+                margin-top: 15px;
+                padding: 0 10px;
+            }
+
+            .coffee-link a {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px 10px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            #characterDisplay {
+                padding: 12px;
+            }
+
+            #characterDisplay p {
+                font-size: 0.95em;
+            }
+
+            .section-header-text {
+                font-size: 1em;
+            }
+
+            .details-grid {
+                gap: 6px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="main-wrapper">
@@ -25,6 +327,146 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        const generateButton = document.getElementById('generateButton');
+        const characterDisplay = document.getElementById('characterDisplay');
+
+        let character = {};
+        let namesData = null;
+        let personalityData = null;
+
+        const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+        const generateIdentity = () => {
+            const sex = getRandomElement(['Male', 'Female']);
+            const firstName = sex === 'Male'
+                ? getRandomElement(namesData.firstName.male)
+                : getRandomElement(namesData.firstName.female);
+            const lastName = getRandomElement(namesData.lastNames);
+            return { firstName, lastName, sex };
+        };
+
+        const generatePersonality = () => {
+            const alignment = getRandomElement(personalityData.alignment);
+            const personalityType = getRandomElement(personalityData.personalityType);
+            return { alignment, personalityType };
+        };
+
+        const renderCharacter = () => {
+            if (Object.keys(character).length === 0) {
+                characterDisplay.innerHTML = '<p>Click the button to generate a character!</p>';
+                return;
+            }
+
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                characterDisplay.innerHTML = `
+                    <div class="section-with-reroll">
+                        <div class="section-header">
+                            <strong class="section-header-text">Identity</strong>
+                        </div>
+                        <div class="details-grid">
+                            <p><strong>Name:</strong></p><p>${character.firstName} ${character.lastName}</p>
+                            <p><strong>Sex:</strong></p><p>${character.sex}</p>
+                        </div>
+                        <button class="reroll-button" id="rerollIdentityBtn">↻ Reroll Identity</button>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="section-with-reroll">
+                        <div class="section-header">
+                            <strong class="section-header-text">Personality</strong>
+                        </div>
+                        <div class="details-grid">
+                            <p><strong>Alignment:</strong></p><p>${character.alignment}</p>
+                            <p><strong>Personality Type:</strong></p><p>${character.personalityType.name} <a href="${character.personalityType.link}" target="_blank">(link)</a></p>
+                        </div>
+                        <button class="reroll-button" id="rerollPersonalityBtn">↻ Reroll Personality</button>
+                    </div>
+                `;
+            } else {
+                characterDisplay.innerHTML = `
+                    <button class="reroll-button" id="rerollIdentityBtn">↻</button>
+                    <div id="identitySection">
+                        <div class="section-header">
+                            <strong class="section-header-text">Identity</strong>
+                        </div>
+                        <div class="details-grid">
+                            <p><strong>Name:</strong></p><p>${character.firstName} ${character.lastName}</p>
+                            <p><strong>Sex:</strong></p><p>${character.sex}</p>
+                        </div>
+                    </div>
+                    <div class="section-divider"></div>
+                    <button class="reroll-button" id="rerollPersonalityBtn">↻</button>
+                    <div id="personalitySection">
+                        <div class="section-header">
+                            <strong class="section-header-text">Personality</strong>
+                        </div>
+                        <div class="details-grid">
+                            <p><strong>Alignment:</strong></p><p>${character.alignment}</p>
+                            <p><strong>Personality Type:</strong></p><p>${character.personalityType.name} <a href="${character.personalityType.link}" target="_blank">(link)</a></p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            document.getElementById('rerollIdentityBtn').addEventListener('click', handleRerollIdentity);
+            document.getElementById('rerollPersonalityBtn').addEventListener('click', handleRerollPersonality);
+        };
+
+        const handleGenerateCharacter = () => {
+            if (!namesData || !personalityData) return;
+            characterDisplay.innerHTML = '<p>Generating character...</p>';
+            const identity = generateIdentity();
+            const personality = generatePersonality();
+            character = { ...identity, ...personality };
+            renderCharacter();
+        };
+
+        const handleRerollIdentity = () => {
+            if (!namesData) return;
+            const identity = generateIdentity();
+            character.firstName = identity.firstName;
+            character.lastName = identity.lastName;
+            character.sex = identity.sex;
+            renderCharacter();
+        };
+
+        const handleRerollPersonality = () => {
+            if (!personalityData) return;
+            const personality = generatePersonality();
+            character.alignment = personality.alignment;
+            character.personalityType = personality.personalityType;
+            renderCharacter();
+        };
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (Object.keys(character).length > 0) {
+                renderCharacter();
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            generateButton.disabled = true;
+            characterDisplay.innerHTML = '<p>Loading data...</p>';
+            try {
+                const [namesResponse, personalityResponse] = await Promise.all([
+                    fetch('names.json'),
+                    fetch('randomizer.json')
+                ]);
+                namesData = await namesResponse.json();
+                personalityData = await personalityResponse.json();
+
+                generateButton.disabled = false;
+                characterDisplay.innerHTML = '<p>Click the button to generate a character!</p>';
+            } catch (error) {
+                characterDisplay.innerHTML = '<p style="color: red;">Failed to load character data. Please refresh the page.</p>';
+                console.error('Error loading data:', error);
+            }
+        });
+
+        generateButton.addEventListener('click', handleGenerateCharacter);
+    </script>
 </body>
 </html>
