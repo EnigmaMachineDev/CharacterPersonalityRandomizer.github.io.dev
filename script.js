@@ -29,29 +29,57 @@
                 return;
             }
 
-            characterDisplay.innerHTML = `
-                <button class="reroll-button" id="rerollIdentityBtn">↻</button>
-                <div id="identitySection">
-                    <div class="section-header">
-                        <strong class="section-header-text">Identity</strong>
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                characterDisplay.innerHTML = `
+                    <div class="section-with-reroll">
+                        <div class="section-header">
+                            <strong class="section-header-text">Identity</strong>
+                        </div>
+                        <div class="details-grid">
+                            <p><strong>Name:</strong></p><p>${character.firstName} ${character.lastName}</p>
+                            <p><strong>Sex:</strong></p><p>${character.sex}</p>
+                        </div>
+                        <button class="reroll-button" id="rerollIdentityBtn">↻</button>
                     </div>
-                    <div class="details-grid">
-                        <p><strong>Name:</strong></p><p>${character.firstName} ${character.lastName}</p>
-                        <p><strong>Sex:</strong></p><p>${character.sex}</p>
+                    <div class="section-divider"></div>
+                    <div class="section-with-reroll">
+                        <div class="section-header">
+                            <strong class="section-header-text">Personality</strong>
+                        </div>
+                        <div class="details-grid">
+                            <p><strong>Alignment:</strong></p><p>${character.alignment}</p>
+                            <p><strong>Personality Type:</strong></p><p>${character.personalityType.name} <a href="${character.personalityType.link}" target="_blank">(link)</a></p>
+                        </div>
+                        <button class="reroll-button" id="rerollPersonalityBtn">↻</button>
                     </div>
-                </div>
-                <div class="section-divider"></div>
-                <button class="reroll-button" id="rerollPersonalityBtn">↻</button>
-                <div id="personalitySection">
-                    <div class="section-header">
-                        <strong class="section-header-text">Personality</strong>
+                `;
+            } else {
+                characterDisplay.innerHTML = `
+                    <button class="reroll-button" id="rerollIdentityBtn">↻</button>
+                    <div id="identitySection">
+                        <div class="section-header">
+                            <strong class="section-header-text">Identity</strong>
+                        </div>
+                        <div class="details-grid">
+                            <p><strong>Name:</strong></p><p>${character.firstName} ${character.lastName}</p>
+                            <p><strong>Sex:</strong></p><p>${character.sex}</p>
+                        </div>
                     </div>
-                    <div class="details-grid">
-                        <p><strong>Alignment:</strong></p><p>${character.alignment}</p>
-                        <p><strong>Personality Type:</strong></p><p>${character.personalityType.name} <a href="${character.personalityType.link}" target="_blank">(link)</a></p>
+                    <div class="section-divider"></div>
+                    <button class="reroll-button" id="rerollPersonalityBtn">↻</button>
+                    <div id="personalitySection">
+                        <div class="section-header">
+                            <strong class="section-header-text">Personality</strong>
+                        </div>
+                        <div class="details-grid">
+                            <p><strong>Alignment:</strong></p><p>${character.alignment}</p>
+                            <p><strong>Personality Type:</strong></p><p>${character.personalityType.name} <a href="${character.personalityType.link}" target="_blank">(link)</a></p>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
+            }
 
             document.getElementById('rerollIdentityBtn').addEventListener('click', handleRerollIdentity);
             document.getElementById('rerollPersonalityBtn').addEventListener('click', handleRerollPersonality);

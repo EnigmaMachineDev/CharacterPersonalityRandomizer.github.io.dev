@@ -1,5 +1,4 @@
-
-        body {
+body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #1a1a1a;
             color: #e0e0e0;
@@ -11,26 +10,35 @@
             padding: 20px;
             box-sizing: border-box;
         }
+
         .main-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
+            max-width: 500px;
         }
+
         .container {
             background-color: #2c2c2c;
             padding: 30px 40px;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             text-align: center;
-            width: 500px;
+            width: 100%;
+            max-width: 500px;
             position: relative;
             margin-top: 60px;
             margin-bottom: 60px;
+            box-sizing: border-box;
         }
+
         h1 {
-            color: #66bb6a; /* Green */
+            color: #66bb6a;
             margin-bottom: 30px;
+            font-size: 2em;
         }
+
         button {
             background-color: #66bb6a;
             color: #1a1a1a;
@@ -43,12 +51,20 @@
             transition: background-color 0.3s, transform 0.2s;
             margin-bottom: 30px;
         }
+
         button:hover {
             background-color: #5cb85c;
         }
+
         button:active {
             transform: scale(0.98);
         }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         #characterDisplay {
             background-color: #333;
             padding: 20px;
@@ -61,48 +77,67 @@
             align-items: flex-start;
             position: relative;
         }
+
         #characterDisplay p {
             margin: 8px 0;
             font-size: 1.1em;
             color: #fff;
         }
+
         #characterDisplay p strong {
             color: #66bb6a;
             margin-right: 5px;
         }
+
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
+            width: 100%;
         }
+
+        .section-header-text {
+            display: block;
+            width: 100%;
+            color: #66bb6a;
+            font-size: 1.2em;
+        }
+
         .details-grid {
             display: grid;
             grid-template-columns: auto 1fr;
             gap: 10px;
             align-items: center;
+            width: 100%;
         }
+
         .section-divider {
             border-top: 1px solid #4a4a4a;
             margin: 15px 0;
             width: 100%;
         }
+
         #characterDisplay a {
             color: #66bb6a;
             text-decoration: none;
         }
+
         #characterDisplay a:hover {
             text-decoration: underline;
         }
+
         .footer {
             margin-top: 20px;
             font-size: 0.9em;
             color: #e0e0e0;
             text-align: center;
         }
+
         .coffee-link {
             margin-top: 10px;
         }
+
         .coffee-link a {
             display: inline-block;
             background-color: #66bb6a;
@@ -113,10 +148,12 @@
             font-weight: bold;
             transition: background-color 0.3s;
         }
+
         .coffee-link a:hover {
             background-color: #5cb85c;
             text-decoration: none;
         }
+
         .reroll-button {
             background-color: #4a4a4a;
             color: #e0e0e0;
@@ -127,38 +164,139 @@
             border: none;
             position: absolute;
             right: 20px;
+            margin: 0;
         }
+
         .reroll-button:hover {
             background-color: #5a5a5a;
         }
+
         #rerollIdentityBtn {
             top: 20px;
         }
+
         #rerollPersonalityBtn {
             top: 170px;
         }
-        .section-header-text {
-            display: block;
-            width: 100%;
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                align-items: flex-start;
+                padding-top: 20px;
+            }
+
+            .main-wrapper {
+                max-width: 100%;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                padding: 20px 15px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                min-width: 0;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 16px;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            #characterDisplay {
+                padding: 15px;
+                min-height: 120px;
+            }
+
+            #characterDisplay p {
+                font-size: 1em;
+                margin: 6px 0;
+            }
+
+            .details-grid {
+                gap: 8px;
+            }
+
+            .section-header-text {
+                font-size: 1.1em;
+            }
+
+            .reroll-button {
+                position: static;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding: 8px 12px;
+                font-size: 14px;
+                width: auto;
+                align-self: flex-end;
+            }
+
+            .section-container {
+                position: relative;
+                width: 100%;
+            }
+
+            .section-with-reroll {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            #rerollIdentityBtn, #rerollPersonalityBtn {
+                position: static;
+                top: auto;
+                right: auto;
+                margin-left: auto;
+            }
+
+            .footer {
+                margin-top: 15px;
+                padding: 0 10px;
+            }
+
+            .coffee-link a {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
         }
-    
-@media (max-width: 600px) {
-    .container {
-        width: 90%;
-        padding: 20px;
-    }
 
-    h1 {
-        font-size: 2.5em;
-    }
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px 10px;
+            }
 
-    button {
-        padding: 12px 25px;
-        font-size: 16px;
-    }
+            h1 {
+                font-size: 1.6em;
+            }
 
-    #rerollPersonalityBtn {
-        top: 200px;
-    }
-}
-    
+            button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            #characterDisplay {
+                padding: 12px;
+            }
+
+            #characterDisplay p {
+                font-size: 0.95em;
+            }
+
+            .section-header-text {
+                font-size: 1em;
+            }
+
+            .details-grid {
+                gap: 6px;
+            }
+        }
